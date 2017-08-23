@@ -1,0 +1,219 @@
+﻿<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>CALCULADORA</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+<script type="text/javascript">
+    
+    function add(input, character){
+      if(input.value == null || input.value == "0"){
+          input.value =character;
+      } else
+          input.value += character;
+    }
+    
+  
+    function deleteC(input){
+        input.value = input.value.substring(0, input.value.length - 1);
+    }
+
+    function changeSign(input){
+        // could use input.value = 0 - input.value, but let's show off substring
+        if(input.value.substring(0, 1) == "-")
+            input.value = input.value.substring(1, input.value.length);
+        else
+            input.value = "-" + input.value;
+    }
+
+    function compute(form){
+            form.display.value = eval(form.display.value);
+    }
+
+    function elev(form) {
+            form.display.value = eval(form.display.value) * eval(form.display.value);
+    }
+
+    function porcent(form){
+      form.display.value = (eval(form.display.value) / 100);
+           
+    }
+    
+    function squart(form){
+        form.display.value = Math.sqrt(form.display.value);
+    }
+    
+    function inv(form){
+        form.display.value = (1/form.display.value );
+        
+    }
+    function checkSign(str) {
+            for (var i = 0; i < str.length; i++) {
+                    var ch = str.substring(i, i+1);
+                    if (ch < "0" || ch > "9") {
+                            if (ch != "/" && ch != "*" && ch != "+" && ch != "-" && ch != "(" && ch!= ")") {  
+                                alert("invalid entry");
+                                return false
+                            }
+                    }
+            }
+            return true
+    }
+
+</script>   
+    
+    
+    </head>
+    
+   <body>        
+    
+
+<form>
+<table border="3" align=center BGCOLOR="DAC5C0">
+  
+    <tr align="center">
+    <td colspan = 5>
+        <table border="2">
+          <div> Estándar </div>
+            <td align=center><input  name="display" value="" size=55></td>
+        </table>
+    </td>
+    </tr>
+    
+    
+    <tr align="center">
+    <td colspan = 6>
+        <table border="2">
+
+        <tr>
+        <td>
+        <input type="button" value="    MC    " onclick="add('MC')">
+        </td>
+        <td>
+        <input type="button" value="    MR    "onclick="add('MR')">
+        </td>
+        <td>
+        <input type="button" value="    M+    "onclick="add('M+')">
+        </td>
+        <td>
+        <input type="button" value="    M-    "onclick="add('M-')">
+        </td>
+        <td>
+        <input type="button" value="    MS    "onclick="add('MS')">
+        </td>
+        <td>
+        <input type="button" value="    M*    "onclick="add('M*')">
+        </td>
+        </tr>
+        </table>  
+    </td>
+    </tr>
+    
+<td>
+<input type="button" value="    %    " onClick="if (checkSign(this.form.display.value))
+	{ porcent(this.form) }">
+</td>
+<td>
+<input type="button" value="    RA    "onclick="if (checkSign(this.form.display.value))
+	{ squart(this.form) } ">
+</td>
+<td>
+<input type="button" value="    X2   "onclick=" if (checkSign(this.form.display.value))
+	{ elev(this.form) }">
+</td>
+<td>
+<input type="button" value="    1/X     "onclick="if (checkSign(this.form.display.value))
+	{ inv(this.form) }">
+</td>
+</tr>
+
+<tr align=center>
+<td>
+<input type="button" value="    CE    "onclick=" deleteC(this.form.display)" >
+</td>
+<td>
+<input type="button" value="    C    "onClick="this.form.display.value = 0 "  >
+</td>
+<td>
+<input type="button" value="    <-   " onClick="deleteC(this.form.display)" >
+</td>
+<td>
+<input type="button" value="    /     " onClick="add( this.form.display,'/')" >
+</td>
+</tr>
+
+<tr align=center>
+<td>
+<input type="button" value="    7    " onClick="add(this.form.display,'7')">
+</td>
+<td>
+<input type="button" value="    8    " onClick="add(this.form.display,'8')">
+</td>
+<td>
+<input type="button" value="    9    " onClick="add(this.form.display,'9')">
+</td>
+<td>
+<input type="button" value="    *    " onClick="add(this.form.display,'*')">
+</td>
+</tr>
+
+<tr align=center>
+<td>
+<input type="button" value="    4    " onClick="add(this.form.display,'4')">
+</td>
+<td>
+<input type="button" value="    5    " onClick="add(this.form.display,'5')">
+</td>
+<td>
+<input type="button" value="    6    " onClick="add(this.form.display,'6')">
+</td>
+<td>
+<input type="button" value="     -    " onClick="add(this.form.display,'-')">
+</td>
+</tr>
+
+<tr align=center>
+<td>
+<input type="button" value="    1    " onClick="add(this.form.display,'1')"> 
+</td>
+<td>
+<input type="button" value="    2    " onClick="add(this.form.display,'2')"> 
+</td>
+<td>
+<input type="button" value="    3    " onClick="add(this.form.display,'3')">
+</td>
+<td>
+<input type="button" value="    +    " onClick="add(this.form.display,'+')">
+</td>
+</tr>
+
+<tr align=center>
+<td>
+<input type="button" value="    +/-    " onClick="changeSign(this.form.display)"> 
+</td>
+<td>
+<input type="button" value="     0    " onClick="add(this.form.display,'0')"> 
+</td>
+<td>
+<input type="button" value="     ,    " onClick="add(this.form.display,',')">
+</td>
+<td>
+<input type="button" value="     =     " name="igual" onClick="if (checkSign(this.form.display.value))
+	{ compute(this.form) }" >
+</td>
+</tr>
+
+</table>
+
+
+</form>
+
+   </body>
+</html>
